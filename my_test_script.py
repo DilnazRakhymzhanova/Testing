@@ -1,16 +1,27 @@
-from selenium import webdriver
-from selenium.webdriver import Keys
-from selenium.webdriver.common.by import By
-driver = webdriver.Chrome()
-driver.get('https://www.google.com')
+from argparse import Action
+import pytest
 import time
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver import ActionChains
 
-locator_1 = driver.find_element(By.CLASS_NAME, 'gLFyf')
-locator_1.send_keys("Selenium")
-locator_1.send_keys(Keys.ENTER)
-time.sleep(5)
-locator_2 = driver.find_element(By.XPATH, '//*[@class="LC20lb MBeuO DKV0Md"]').click()
-time.sleep(5)
+driver = None
+
+def setup_module(module):
+    global driver
+    driver = webdriver.Chrome()
+    driver.implicitly_wait(10)
+    driver.delete_all_cookies()
+    driver.get('https://lichi.com/kz/ru')
+
+
+def teardown_module(module):
+    driver.quit()
+
+
+def test_title():
+    assert driver.title == "Online"
 
 
 
