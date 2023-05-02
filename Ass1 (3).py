@@ -2,8 +2,8 @@ import pytest
 
 @pytest.mark.slow
 def test_my_fast():
-    sdu = "Abdisalam"
-    assert "Abdi" in sdu
+    sdu = "Aruzhan"
+    assert "Aru" in sdu
 
 @pytest.mark.slow
 def test_my():
